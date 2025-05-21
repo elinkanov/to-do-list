@@ -2,15 +2,15 @@ const inputElement = document.getElementById('title')
 const createBtn = document.getElementById('create')
 const listElement = document.getElementById('list')
 
-const localStorageKey = 'myNotes'; //переменная для хранения данных. это название папки в файловой системе, где мы будем хранить наши «файлы» с данными заметок.
+const localStorageKey = 'myNotes'; 
 
-function loadNotes() { //загрузка заметок из localStorage
-  const storedNotes = localStorage.getItem(localStorageKey); // как бы получение данных из заметок
+function loadNotes() { 
+  const storedNotes = localStorage.getItem(localStorageKey); 
   return storedNotes ? JSON.parse(storedNotes) : []; 
 }
 
-function saveNotes() { //сохранение заметок в localStorage
-  localStorage.setItem(localStorageKey, JSON.stringify(notes)); //сохранение данных setItem
+function saveNotes() { 
+  localStorage.setItem(localStorageKey, JSON.stringify(notes)); 
 }
 
 let notes = loadNotes();
@@ -22,10 +22,10 @@ function render() {
     for(let i = 0; i < notes.length; i++) {
     listElement.insertAdjacentHTML('beforeend', getNoteTemplate(notes[i], i))
     }
-    saveNotes(); // сохраняем заметки после каждой отрисовки
+    saveNotes(); 
 }
 
-render() // функция render() перерисовывает список, чтобы отобразить новую заметку.
+render() 
 
 createBtn.onclick = function () {
     if (inputElement.value.length === 0) {
