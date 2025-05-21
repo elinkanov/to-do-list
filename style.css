@@ -3,16 +3,15 @@ body {
     color: #ffffff;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center; 
+    justify-content: flex-start; 
+    align-items: center;
     min-height: 100vh;
     padding: 20px;
-    justify-content: flex-start; 
 }
 
 h1 {
     text-align: left;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
     font-family: sans-serif;
 }
 
@@ -24,14 +23,14 @@ input {
     margin-bottom: 20px;
     padding: 15px 468px;
     text-align: left;
-    padding-left: 20px; 
+    padding-left: 20px;
     box-sizing: border-box;
     display: block;
     font-size: 1em;
 }
 
 button {
-  background-color: #222;
+    background-color: #222;
     color: rgb(253, 159, 198);
     border: 1px solid rgb(253, 159, 198);
     border-radius: 5px;
@@ -40,39 +39,36 @@ button {
     margin-bottom: 5px;
     transition: background-color 0.3s ease;
     font-size: 1em;
-    
 }
 
-button:hover{
+button:hover {
     background-color: #444;
-    color: rgb(255, 255, 255)
+    color: rgb(255, 255, 255);
 }
 
 ul {
     background-color: #fff;
     color: #545353;
-    padding: 10px; 
     border-radius: 5px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin-top: 20px;
-    padding: 10px 13px;
-}
 
+}
 
 .list-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px;
+    padding: 20px;
 }
 
-
-.btn-success, .btn-danger {
+.btn-success,
+.btn-danger {
     cursor: pointer;
     margin-left: 5px;
     padding: 10px 13px;
     border-radius: 5px;
-     transition: background-color 0.5s ease;
+    transition: background-color 0.5s ease;
 }
 
 .btn-success {
@@ -93,4 +89,14 @@ ul {
 .btn-danger:hover {
     background-color: rgb(252, 198, 198);
     color: rgb(62, 3, 3);
+}
+
+.text-decoration-line-through {
+    text-decoration: line-through;
+}
+
+.list-item[data-completed="true"] .btn-success { 
+    background-color: rgb(253, 142, 58);
+    color: rgb(255, 255, 255); 
+
 }
