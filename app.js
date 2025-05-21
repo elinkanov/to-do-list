@@ -2,25 +2,30 @@ const inputElement = document.getElementById('title')
 const createBtn = document.getElementById('create')
 const listElement = document.getElementById('list')
 
-const notes = [
-    {
-    title: 'записать блок про массивы',
-    completed: false,
-    }, 
-    {
-    title: 'рассказать теорию объектов',
-    completed: true,
-    }, 
-]
+const localStorageKey = 'myNotes'; //переменная для хранения данных. это название папки в файловой системе, где мы будем хранить наши «файлы» с данными заметок.
+
+function loadNotes() { //загрузка заметок из localStorage
+  const storedNotes = localStorage.getItem(localStorageKey); // как бы получение данных из заметок
+  return storedNotes ? JSON.parse(storedNotes) : []; 
+}
+
+function saveNotes() { //сохранение заметок в localStorage
+  localStorage.setItem(localStorageKey, JSON.stringify(notes)); //сохранение данных setItem
+}
+
+let notes = loadNotes();
+
+
 
 function render() {
     listElement.innerHTML = ''
     for(let i = 0; i < notes.length; i++) {
     listElement.insertAdjacentHTML('beforeend', getNoteTemplate(notes[i], i))
     }
-
+    saveNotes(); // сохраняем заметки после каждой отрисовки
 }
-render()
+
+render() // функция render() перерисовывает список, чтобы отобразить новую заметку.
 
 createBtn.onclick = function () {
     if (inputElement.value.length === 0) {
@@ -55,13 +60,15 @@ listElement.onclick = function (event) {
 }
 
 function getNoteTemplate(note, index) {
-    console.log(note.completed)
     return `
-        <li class="list-item">
+        <li class="list-item"  data-completed="${note.completed}">
                     <span class="${note.completed ? 'text-decoration-line-through' : ''}">${note.title}</span>
                     <span>
-                        <span class="btn-${note.completed ? 'warning' : 'success'}" data-index="${index}">&check;</span>
-                        <span class="btn-danger">&times;</span>
+                        <span class="btn-success ${note.completed ? 'warning' : 'success'}" data-index="${index}" data-type="toggle">&check;
+                         
+                        </span>
+     
+                        <span class="btn-danger" data-index="${index}" data-type="remove">&times;</span>
                     </span>
         </li>
     `
